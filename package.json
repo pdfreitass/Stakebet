@@ -5,7 +5,7 @@
   "description": "Controle profissional de apostas esportivas — Simples, Surebets e Duplo Green",
   "scripts": {
     "dev": "npx serve public",
-    "build": "node scripts/build.js",
+    "build": "echo 'Static site — no build needed'",
     "deploy": "npm run build && npx vercel --prod"
   },
   "dependencies": {
