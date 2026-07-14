@@ -3,8 +3,8 @@
   'use strict';
 
   /* ── Configuração Supabase (substitua pelas suas credenciais) ── */
-  window.SB_SUPABASE_URL = '';
-  window.SB_SUPABASE_KEY = '';
+  window.SB_SUPABASE_URL = 'https://nflzagwyqoiquslyfzgr.supabase.co';
+  window.SB_SUPABASE_KEY = ''; // ← cole sua anon key aqui
 
   /* ── Inicializar Supabase ── */
   var infra = SB.Infrastructure;
