@@ -1,0 +1,61 @@
+---
+name: refactor-namespaces
+status: verified
+---
+
+# Spec 1 — Task Breakdown
+
+## Fase 1: Fundação (módulos sem dependências externas)
+
+- [ ] **T1.1** Extrair `SB.Util` — Mover R, R2, pct, fmtMoney, sureEventDate, animateCountUp, fmtDataShort, fmtDataHora, showToast, probImplicita, splitToDateTime, combineDateTime + `_countUpSeq` para IIFE. Atualizar TODAS as chamadas internas (dentro do próprio módulo) e externas (outros módulos que chamam essas funções).
+
+- [ ] **T1.2** Extrair `SB.Html` — Mover bkR, statCard, miniStat, metaCard, rankCard, emptyState, monthlyBuckets, monthlyBarsHtml, pieChartHtml, computeEquity, sumCard, legResultBox para IIFE. Depende de SB.Util. Atualizar chamadas internas e externas.
+
+- [ ] **T1.3** Extrair `SB.Store` — Criar abstração com KEYS (9 chaves), load, save, remove. Mover as constantes de chave: CFG_KEY, CASAS_KEY, SK_SIMPLES, SK_SURE, SK_DG, TRASH_SIMPLES_KEY, TRASH_SURE_KEY, TRASH_DG_KEY, SYNC_KEY. A função `scheduleAutoPush` é referenciada via lazy (SB.Sync.scheduleAutoPush).
+
+## Fase 2: Domínios Independentes
+
+- [ ] **T2.1** Extrair `SB.Casas` — Mover loadCasas, saveCasas, addCasaIfNew, casaOptionsHtml, renderCasaSelects, addCasaManual, removeCasa, renderCasas + estado `casas`.
+
+- [ ] **T2.2** Extrair `SB.Simples` — Mover TODAS as funções de apostas simples: luc, sortLucroBet, statsSimples, renderSimples, betCard, setT, setTFromUI, onCasa, updateOddProbHint, onOddApostaChange, onRetornoManualEdit, addBet, editBet, resetSimplesForm, delBet, exportCSVSimples, exportPDFSimples + estado `bets`, `nid`, `editingBetId`, `curT`, `retornoManual`.
+
+- [ ] **T2.3** Extrair `SB.Surebets` — Mover TODAS as funções de surebets: sureBadgeStatus, setSureStatus, delSure, statsSure, renderSure, sureCard, setLegCount, legCardHtml, onLegStakeManualEdit, resetLegOverride, renderLegsContainer, captureLegValues, restoreLegValues, addLeg, removeLeg, onLegCasa, calcSure, registerSure, editSure, resetSureForm, exportCSVSure, exportPDFSure + estado `sure`, `snid`, `editingSureId`, `legCounts`, `legOverride`.
+
+- [ ] **T2.4** Extrair `SB.DuploGreen` — Mover TODAS as funções de duplo green: dgLucro, setDGStatus, delDG, statsDG, renderDG, dgCard, saveDGResults, registerDG, editDG, resetDGForm, exportCSVDG, exportPDFDG + estado `dg`, `dgnid`, `editingDGId`. NOTA: Duplo Green reusa `calcSure('dg')`, `setLegCount('dg',...)`, `legCardHtml('dg',...)` etc. de SB.Surebets. Atualizar chamadas para `SB.Surebets.calcSure('dg')` etc.
+
+- [ ] **T2.5** Extrair `SB.Lixeira` — Mover restoreBet, permDelBet, restoreSureOp, permDelSureOp, restoreDG, permDelDG, esvaziarLixeira, renderTrash + estado `trashBets`, `trashSure`, `trashDG` + funções load/save de cada trash.
+
+## Fase 3: Orquestração
+
+- [ ] **T3.1** Extrair `SB.Relatorios` — Mover setReportPeriod, setReportType, reportPeriodLabel, resolveReportRange, collectReportRows, updateReportPreview, exportReportCSV, exportReportPDF, csvCell, downloadCSV, printReport + estado `reportPeriod`, `reportType`. **Importante**: `printReport` e `downloadCSV` são exportados (chamados cross-module por SB.Simples, SB.Surebets, SB.DuploGreen). `csvCell`, `reportPeriodLabel`, `resolveReportRange`, `collectReportRows` são privados.
+
+- [ ] **T3.2** Extrair `SB.Sync` — Mover syncPush, syncPull, scheduleAutoPush, collectAllData, applyAllData, exportBackup, onImportFileChange, importBackup, loadSyncCfg, saveSyncCfgToStorage, toggleSyncGuide, downloadSyncFile, fillSyncForm, updateSyncStatus, saveSyncConfig, onSyncAutoChange + estado `syncCfg`, `_syncPushTimer` + constantes de arquivos sync embutidos (SYNC_FILE_DATA_JS, SYNC_FILE_PACKAGE_JSON, SYNC_FILE_SCHEMA_SQL).
+
+- [ ] **T3.3** Extrair `SB.Config` — Mover loadCfg, saveCfg, fillCfgForm, onCfgChange, toggleNovoCiclo, confirmarNovoCiclo, toggleCasasPanel, onConfirmZerarInput, resetAll + estado `cfg`. Usa referências lazy para SB.Simples, SB.Surebets, SB.DuploGreen, SB.Nav, SB.Casas, SB.Lixeira.
+
+- [ ] **T3.4** Extrair `SB.Nav` — Mover showTab, setNovaTipo, setHistoricoTipo, cancelEdit, hasUnsavedNovaData + estado `curTab`, `novaTipo`, `curHistTipo`, `TAB_TAGS`. Usa referências lazy para múltiplos módulos.
+
+- [ ] **T3.5** Extrair `SB.Home` — Mover updateHeaderBanca, renderHome, renderAll.
+
+## Fase 4: Inicialização e Limpeza
+
+- [ ] **T4.1** Extrair init — Mover `initScrollNav()` e `init()` para um IIFE final. Atualizar chamadas para `SB.Casas.renderCasaSelects()`, `SB.Surebets.setLegCount(...)`, `SB.Config.fillCfgForm()`, etc. Mover `window.onafterprint` para este IIFE.
+
+- [ ] **T4.2** Atualizar handlers onclick em TODAS as strings HTML — Substituir `onclick="fn("` por `onclick="SB.Modulo.fn("` em todas as strings de template. Lista de verificação:
+  - betCard: `editBet`, `delBet`
+  - sureCard: `editSure`, `delSure`, `setSureStatus`
+  - dgCard: `editDG`, `delDG`, `setDGStatus`, `saveDGResults`
+  - renderHome: `showTab`, `editBet`, `editSure`, `editDG`
+  - renderTrash: `restoreBet`, `permDelBet`, `restoreSureOp`, `permDelSureOp`, `restoreDG`, `permDelDG`
+  - renderCasas: `removeCasa`
+  - resetSimplesForm, resetSureForm, resetDGForm: SVGs inline
+  - HTML do body: `showTab`, `setNovaTipo`, `setHistoricoTipo`, `renderSimples`, `renderSure`, `renderDG`, `toggleNovoCiclo`, `confirmarNovoCiclo`, `onCfgChange`, etc.
+
+- [ ] **T4.3** Limpeza final — Remover TODAS as variáveis e funções que sobraram no escopo global. Garantir que apenas `window.SB` e o objeto `ICO` (ícones SVG) permanecem no escopo global.
+
+## Fase 5: Verificação
+
+- [ ] **T5.1** Abrir o arquivo no navegador e testar manualmente cada aba e cada ação
+- [ ] **T5.2** Verificar console para erros (deve estar limpo)
+- [ ] **T5.3** Verificar localStorage — todas as 9 chaves com nomes corretos
+- [ ] **T5.4** Testar com dados pré-existentes (simular dados legados)

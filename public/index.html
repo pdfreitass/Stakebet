@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#07080c">
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAADUXklEQVR42uydd5ilWVXuf3vvL51Yubq7qnOenAdmhhlmGHLOomBC4Sogeu9V8HrNOSIqoqBeFAUTkjPDwOScemY65+rqyuHkL+297x/7q+oeEAQcFdR6nnoqnnO+s7+1117rXe96lwAsX+tDfN2//od+fBtf2te91u+k6/5O/JBf96/228koxLfVpYlv4u/2Sbpu8d/2+i+uxbe9w/hWL/C/PeF/zZPwv+/7k7mg4ozvEOJsTyLO8tBnltvas37733fhSdl43xEG/e10kUKAEMJ9LQzVWoux/zqjFAKkFGeeszByWzzvk70G/1k92X976H/JyArjtYDR9usulu/7lCKfaklSLpWolEsEgcLzFBIwxpBrQ5JkdHsxcS+l0cnoJRm51l870RECWWQ7xoI19j/spn27G8y3xfV9uyzS2d7XGov5Zy5qoB4yvq7CprE62zcNs3l9HxvW1hkdihgZrNBXr1CteUSVKl5lCBGUwAvcuzQ5GIPVOWnSJUsyms2ExnKLpcUWUzMNTkw0OHZylsMn5jl2qsGpqRadXv5V16GkgOI6rf1vr/Qt2dJ/Rne+4oUB9FdYcF9fxK7NdS7eNcAF2+rs3lJly9oSawZDqhUPggCEBA1ohZEhxgZoVcKoEOGVEEENpAJhwGpsbpDCQ3oGTIIiR9gukILUYHMwGtKMXjtheq7HoRNN9hyc44HH53nk4CJHJ9okqXmigSvhDPtJ8N7fyff5Sb32f8uFeDKfe8WIXex75vflis8F2+tced4gV5xT59wNIeuHFOVAgTXkRqJtRC7rGFUBVUGGdTy/ileqIoIQ6YWoQCG8CBVWkV4ZZFC8AYE1xRuxGTrrYrIONuth4g46TTB5F2HaSN1G6Rae7RIog/QM1mgWGh2OTbR48HCb2x5Z5O49ixyZ6Hy1cX+NE+Y/u1culvm/xpElhTNmfZZzWzMcceUF/Vx3UR8Xb4nYNOxR8izWSuI8IqUPVeonLA0Q1foI630E1TJBuYoMApQ0gEasPLmQIH1QJfDqWFkFfMAroA+BwGCtdl7ZxqBThM3A5FjjDNekCXmvS9buknWa6N4SWW8JmzbwbRuPDtZkLHZy9p3KuP3RNjffP8/DB5bRxRsUuETzX5uw/pfw0P8em+DJeI2Vm3p2ODHQF/DU82tce36FCzeHDEQaH430KhCNEFRHqQ8NUu4bJqxUKFV8vEAhlHHhg/Sx0hmpZeUiBSCxQiJkCF4ZVBUrSwjhY/EQRXZp0QhyrM2QVmNND2EzrE0Ag7AWbIbQMaQdTNwm7/ZI44w0FfRiS9xuk3bnsfEcKl9CoomN4tBUwpf3NPji/cvsPdo6s5klBWry3wb9HRwbn/HGQgou3l7m2vMrXLIlZCBM0WmG9KvUBseoD43QN9RHrVKmUoZyReBFLqGz0seqAISHFYELIVSIlcEq4CyERSofoXzwy+BVQNWBKhA6D+1wCiAHssJDJ6C7mKyL1TFY56GFzRF5Dxs3MN1FsvYSSbdJ2uuQdGLSXKCFOwHSDLLOMp3GKXR3DiUzuibgyKzl5kea3PJwg4Xl9EziW6Al/23Q3yGGfPYNq1c9nnZehat3hoyUcvK4h8ZjeN16htZtpFKOKPsJoewQBppKJSSqVImq/XjlPggroEIojFX6EaJUhSACv+SWMM8gzcmSFJ1p0jQjzwQ6A2sEGBBCIhBIT6J8H+mHqCDEizykNEjPRyoBSroEUneg18Z2lsjb86TtJeJOg167RbfZoNdp0+u06XQSUhPiR6NEtVEgoNeYZ2HmCElnjiAK6FDhoeMJX3iwwaET3dUbL8S3Ztjfzkbj/WfZhWffIAsM93k84+Iql24LEHGXhdl5TK3Oth3bGBxZiycsWWuKdqNBHgoqtQqyViMzCh8fbQWeVHhRAKU">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAADUXklEQVR42uydd5ilWVXuf3vvL51Yubq7qnOenAdmhhlmGHLOomBC4Sogeu9V8HrNOSIqoqBeFAUTkjPDwOScemY65+rqyuHkL+297x/7q+oeEAQcFdR6nnoqnnO+s7+1117rXe96lwAsX+tDfN2//od+fBtf2te91u+k6/5O/JBf96/228koxLfVpYlv4u/2Sbpu8d/2+i+uxbe9w/hWL/C/PeF/zZPwv+/7k7mg4ozvEOJsTyLO8tBnltvas37733fhSdl43xEG/e10kUKAEMJ9LQzVWoux/zqjFAKkFGeeszByWzzvk70G/1k92X976H/JyArjtYDR9usulu/7lCKfaklSLpWolEsEgcLzFBIwxpBrQ5JkdHsxcS+l0cnoJRm51l870RECWWQ7xoI19j/spn27G8y3xfV9uyzS2d7XGov5Zy5qoB4yvq7CprE62zcNs3l9HxvW1hkdihgZrNBXr1CteUSVKl5lCBGUwAvcuzQ5GIPVOWnSJUsyms2ExnKLpcUWUzMNTkw0OHZylsMn5jl2qsGpqRadXv5V16GkgOI6rf1vr/Qt2dJ/Rne+4oUB9FdYcF9fxK7NdS7eNcAF2+rs3lJly9oSawZDqhUPggCEBA1ohZEhxgZoVcKoEOGVEEENpAJhwGpsbpDCQ3oGTIIiR9gukILUYHMwGtKMXjtheq7HoRNN9hyc44HH53nk4CJHJ9okqXmigSvhDPtJ8N7fyff5Sb32f8uFeDKfe8WIXex75vflis8F2+tced4gV5xT59wNIeuHFOVAgTXkRqJtRC7rGFUBVUGGdTy/ileqIoIQ6YWoQCG8CBVWkV4ZZFC8AYE1xRuxGTrrYrIONuth4g46TTB5F2HaSN1G6Rae7RIog/QM1mgWGh2OTbR48HCb2x5Z5O49ixyZ6Hy1cX+NE+Y/u1culvm/xpElhTNmfZZzWzMcceUF/Vx3UR8Xb4nYNOxR8izWSuI8IqUPVeonLA0Q1foI630E1TJBuYoMApQ0gEasPLmQIH1QJfDqWFkFfMAroA+BwGCtdl7ZxqBThM3A5FjjDNekCXmvS9buknWa6N4SWW8JmzbwbRuPDtZkLHZy9p3KuP3RNjffP8/DB5bRxRsUuETzX5uw/pfw0P8em+DJeI2Vm3p2ODHQF/DU82tce36FCzeHDEQaH430KhCNEFRHqQ8NUu4bJqxUKFV8vEAhlHHhg/Sx0hmpZeUiBSCxQiJkCF4ZVBUrSwjhY/EQRXZp0QhyrM2QVmNND2EzrE0Ag7AWbIbQMaQdTNwm7/ZI44w0FfRiS9xuk3bnsfEcKl9CoomN4tBUwpf3NPji/cvsPdo6s5klBWry3wb9HRwbn/HGQgou3l7m2vMrXLIlZCBM0WmG9KvUBseoD43QN9RHrVKmUoZyReBFLqGz0seqAISHFYELIVSIlcEq4CyERSofoXzwy+BVQNWBKhA6D+1wCiAHssJDJ6C7mKyL1TFY56GFzRF5Dxs3MN1FsvYSSbdJ2uuQdGLSXKCFOwHSDLLOMp3GKXR3DiUzuibgyKzl5kea3PJwg4Xl9EziW6Al/23Q3yGGfPYNq1c9nnZehat3hoyUcvK4h8ZjeN16htZtpFKOKPsJoewQBppKJSSqVImq/XjlPggroEIojFX6EaJUhSACv+SWMM8gzcmSFJ1p0jQjzwQ6A2sEGBBCIhBIT6J8H+mHqCDEizykNEjPRyoBSroEUneg18Z2lsjb86TtJeJOg167RbfZoNdp0+u06XQSUhPiR6NEtVEgoNeYZ2HmCElnjiAK6FDhoeMJX3iwwaET3dUbL8S3Ztjfzkbj/WfZhWffIAsM93k84+Iql24LEHGXhdl5TK3Oth3bGBxZiycsWWuKdqNBHgoqtQqyViMzCh8">
+  <title>StakeBet — Controle profissional de apostas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div>
+      <div class="hdr-brand">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAACs1ElEQVR42uz9d5hl11nmDf/WWjucWLmqq3NWS60crGDJki3LGdnGGBwAgzGYODC8xBmGzDcmD+B3YAAbPORgcBKyLScFS7KyOudY3ZXTyTus8P2xdlW3bBlsYzDwUtd1VKWuOufss/ezn3jf9yMAx39+fUVf4qKTJ/7zRH5FX/Jf+4L9R/pyX+Tn/6+ej3/zBuj+Axm1EBfeX/zn+fiKj/U/I8cXMS4hhH98nsE454rHF55N//fCP/+iuLzyPBxY577qF9H9G3ytf8vv+W8rBAiBkMWJcGCs+xc9gUKAlGL1/ezzGfP/hy74V+V4/j1Z8YoB8MWMTQiGBsqsH6uzfm0fG8f7WDtWZXy0zvBghYH+mNrAKFGlShhGCCGxJkdrQ6/bpdvtsLSUMLfQZnauybnJZSYml5mYWmJqtkWrnf6jx/QvbZD/IQ3w33yeUXgca91zPqxQis3rqly2rZ+rdvSxe1udSzbW2LCmwshghVIlBqVABqBKIGMIyxCUIRoAFQEGnAaL/1tScAZMt3ho6CVk7S4zCx1OTzY5eLzB3sPzPHtkgcOnGiwuP9colfSB/1/bO/6nB/xnvtPFv5VFTvZcLyfYvL7K9bsHuWl3H9dsL7NjbcRQLSJQAiEjjKiiZR0jyrigjgxrqFIVgjIyjJFRiIpqqKiGUCWfGzpwFoRzGNvDpm2c7uDSDi5PwHQJ6BC6DoHrIMkATdJLODfT5MCJZR492OKze5bYc7RBu5NfSBEkCMQX3Dz/odpX/1HcoC8evDGsfJ4gVFy+o86Lrurj5ssqXLouYqQeoIKI3FXJGCCoDBJX+onr/cR9dcJKjaBUQSmHEAaERAgBUnnvF/ThVB+IGAgQq/WcxrkcXAI2AZODzXHWYI3GJl3yTpus2cImS+hkGZE1Ua6F1E26vQ5n5jKePJbx6aeXeXjvAvOLyXM84380r/gV2d7X2mA///1XDM/aC/+2a0uN26+uccP2gG2jimokieIqQXUNQXUN/cP91AaHiKsV4kqIDIrSVUUgI5wIcU7gVj2PBBlCUEEEdZyqIaQ3wNWKwhmcyxBOg+0hXAouBRwCi7AZZG1cr0HeaZF1e6QZdDuOtJeg0yYiW0Cki+Q6ZWo544njPT75dIvH9jfo9PSFzws8bwr778yZ/Ls0wOcY3kUXoq8WcOvuKjftjNg85KjFDhXWKPeNMzQySn2gRF8tpFZVVKoBQaUGYQWnYqwIccLnejIqIcMqIghBCR8HVQgqBlEBakAdKAzQZ2w+H8QCGdAF1wad4EwOOsXlXVyvge0ukLcWSDtL9FoNeq0WaebIXRlNHedidNYhbU5hurN0s4S5juKxE5pPPtXkxLnORVX88xviv5fCIfhaNFC/7NbF83m8wvAcsGEs5iVX17h0jSM2PQJhcHKM0uhmqpUSoWsi0glMU5DbCpkcQKkBrLIoJQniCFmuQlTxxYYV5D1Nd7FJe2mR5lKDtN0g63Xp9XrYNAerCbBICWEgCaKAqFQmKlep1iuoOCaoDlKq9BFWB/z/hyHU6iiZIXWXtNvAGEhzR6/Xpt2YotHskuSSIBqkVB0nrK3HdheRyye4bqTDVa+pcGq5j/v3dXnyUHO1r/ivaYju34Ix/2t5wc9PWMVFJ3rzmog7dsdsHnboNEGIMmvWrWPdugEiodHdZTAdyuWAen+NWr1KvV5laHSQwbFRGFwDoky7ZZibWWZqYpqZ89NMn51iZnqB5lKTTiclSX2EzR1o7Y8hDCAKvHOMQ4gDKMVQXnmUoFpXDA9XqdbqqLBGXKpTGRikPjhIvVZBCYfJurSXF2ksNWg0ujSbPZrtlGarS7OdYCjRP7yRwaFx0DlzU6eYnZ0mrkZ0RZkHD6Y8ur8Jzv2jofk/dBX8rx1q1w0pXnx5ifV9lvmlHqVq">
+        <span>Stake<span style="color:var(--amber);">Bet</span></span>
+      </div>
+      <div class="hdr-tag" id="hdrtag">Controle profissional de apostas</div>
+    </div>
+    <div class="hdr-banca">
+      <div class="hb-label">Patrimônio total</div>
+      <div class="hb-val" id="hb-val">R$ 0,00</div>
+    </div>
+  </div>
+</div>
+
+<!-- Conteúdo renderizado dinamicamente pelo JS -->
+<div id="app-root"></div>
+
+<div class="bottomnav">
+  <div class="bottomnav-inner">
+  <button class="bnav-btn" id="bnav-home" onclick="SB.UI.Navigation.showTab('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+    Dashboard
+  </button>
+  <button class="bnav-btn" id="bnav-simples" onclick="SB.UI.Navigation.showTab('simples')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="18" x2="14" y2="18"></line></svg>
+    Simples
+  </button>
+  <button class="bnav-btn" id="bnav-dg" onclick="SB.UI.Navigation.showTab('dg')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><polyline points="17 6 21 12 17 18"></polyline><polyline points="7 6 3 12 7 18"></polyline></svg>
+    Duplo Green
+  </button>
+  <button class="bnav-fab" id="bnav-nova" onclick="SB.UI.Navigation.showTab('nova')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+  </button>
+  <button class="bnav-btn" id="bnav-sure" onclick="SB.UI.Navigation.showTab('sure')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"></line><line x1="4" y1="7" x2="20" y2="7"></line><circle cx="4" cy="16" r="4"></circle><circle cx="20" cy="16" r="4"></circle></svg>
+    Surebets
+  </button>
+  <button class="bnav-btn" id="bnav-historico" onclick="SB.UI.Navigation.showTab('historico')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
+    Histórico
+  </button>
+  <button class="bnav-btn" id="bnav-config" onclick="SB.UI.Navigation.showTab('config')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><circle cx="4" cy="12" r="2"></circle><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><circle cx="12" cy="10" r="2"></circle><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><circle cx="20" cy="14" r="2"></circle></svg>
+    Config
+  </button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="print-area" class="print-area"></div>
+
+<!-- ══════════ SCRIPTS (ordem de dependência) ══════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/domain/util.js"></script>
+<script src="/js/domain/betting.js"></script>
+<script src="/js/domain/stats.js"></script>
+<script src="/js/infrastructure/supabase.js"></script>
+<script src="/js/infrastructure/storage.js"></script>
+<script src="/js/infrastructure/export.js"></script>
+<script src="/js/app/auth.js"></script>
+<script src="/js/app/config.js"></script>
+<script src="/js/app/casas.js"></script>
+<script src="/js/app/simples.js"></script>
+<script src="/js/app/surebets.js"></script>
+<script src="/js/app/duplogreen.js"></script>
+<script src="/js/app/lixeira.js"></script>
+<script src="/js/app/reports.js"></script>
+<script src="/js/ui/html.js"></script>
+<script src="/js/ui/navigation.js"></script>
+<script src="/js/ui/home.js"></script>
+<script src="/js/ui/simples.js"></script>
+<script src="/js/ui/surebets.js"></script>
+<script src="/js/ui/duplogreen.js"></script>
+<script src="/js/ui/config.js"></script>
+<script src="/js/ui/trash.js"></script>
+<script src="/js/init.js"></script>
+
+</body>
+</html>

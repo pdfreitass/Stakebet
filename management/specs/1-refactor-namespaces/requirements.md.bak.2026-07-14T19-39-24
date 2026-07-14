@@ -1,0 +1,83 @@
+---
+name: refactor-namespaces
+status: created
+references: [ADR-001]
+---
+
+# Spec 1 — Refatoração para Arquitetura de Namespaces
+
+## Objetivo
+
+Refatorar o bloco monolítico de JavaScript (~2.000 linhas, ~154 funções, todas no escopo `window`) para uma arquitetura organizada em 13 namespaces dentro de um único objeto global `window.SB`, usando o padrão IIFE (Immediately Invoked Function Expression).
+
+## Requisitos Funcionais (Acceptance Criteria)
+
+### RF1 — Encapsulamento por Namespace
+- Cada namespace é um IIFE que retorna apenas sua interface pública
+- Funções internas/privadas não são exportadas
+- O namespace raiz `window.SB` é o único novo nome no escopo global
+- Todos os 13 namespaces são criados: `SB.Util`, `SB.Html`, `SB.Store`, `SB.Config`, `SB.Casas`, `SB.Nav`, `SB.Simples`, `SB.Surebets`, `SB.DuploGreen`, `SB.Lixeira`, `SB.Relatorios`, `SB.Sync`, `SB.Home`
+
+### RF2 — Compatibilidade Total com localStorage
+- As 9 chaves localStorage mantêm os mesmos nomes EXATOS:
+  - `sb_config_v1`, `sb_casas_v1`, `sb_simples_v1`, `sb_sure_v1`, `sb_dg_v1`
+  - `sb_trash_simples_v1`, `sb_trash_sure_v1`, `sb_trash_dg_v1`, `sb_sync_v1`
+- O formato JSON dos dados em cada chave é idêntico ao original
+- Dados escritos pela versão original são lidos corretamente pela versão refatorada e vice-versa
+
+### RF3 — Funcionalidade Preservada
+- Todos os 3 módulos de apostas (Simples, Surebets, Duplo Green) funcionam identicamente
+- CRUD completo (criar, ler, atualizar, deletar) preservado
+- Dashboard (Home) preservado
+- Lixeira com restore/delete permanente preservada
+- Histórico com filtros (busca, ordenação, data, casa, status) preservado
+- Exportação CSV e PDF preservada
+- Backup/Restore JSON preservado
+- Sincronização com Vercel/PostgreSQL preservada
+- Gestão de casas (bookmakers) preservada
+- Meta/ciclo preservados
+- Barra inferior com FAB preservada
+
+### RF4 — Handlers onclick Corretos
+- Todas as strings HTML que contêm `onclick="fn("` são atualizadas para `onclick="SB.Modulo.fn("`
+- Nenhum handler quebrado (sem `ReferenceError` no console ao clicar)
+
+### RF5 — Inicialização Correta
+- O IIFE de inicialização (`init` + `initScrollNav`) é executado ao carregar a página
+- A ordem de inicialização é preservada (casas → config → trash → home → sync pull se configurado)
+
+## Requisitos Não-Funcionais
+
+### RNF1 — Sem Build Step
+- O arquivo continua sendo um único `.html` que abre diretamente no navegador (`file://`)
+- Nenhuma ferramenta de build (webpack, vite, rollup, babel, etc.) é necessária
+
+### RNF2 — Sem Framework Externo
+- Nenhuma dependência de npm, CDN (além das fontes Google já existentes)
+- Apenas JavaScript vanilla (ES5 compatível com navegadores modernos)
+
+### RNF3 — Performance
+- O tempo de carregamento e renderização não deve degradar perceptivelmente
+- As chamadas entre namespaces não introduzem overhead significativo
+
+### RNF4 — Manutenibilidade
+- Cada módulo tem exatamente uma responsabilidade (Single Responsibility Principle)
+- Se um módulo A chama B, está documentado no cabeçalho do módulo A
+- Funções com nomes enganosos são renomeadas (ex: `sureEventDate` usada também por Duplo Green)
+
+## Casos de Borda
+
+1. **localStorage vazio**: App deve iniciar com dados zerados, sem erros
+2. **Dados legados**: Apostas salvas antes da refatoração devem carregar normalmente
+3. **Sem conexão**: Funções de sync devem falhar silenciosamente (comportamento atual preservado)
+4. **Múltiplas abas**: Comportamento atual preservado (não há lock de concorrência)
+5. **Edição cancelada**: Formulários resetam corretamente ao trocar de aba
+
+## O que NÃO está no escopo
+
+- Migração de formato de dados
+- Novas funcionalidades
+- Testes automatizados
+- TypeScript
+- PWA/service worker
+- Alteração visual/UX
