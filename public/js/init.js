@@ -4,7 +4,7 @@
 
   /* ── Configuração Supabase (substitua pelas suas credenciais) ── */
   window.SB_SUPABASE_URL = 'https://nflzagwyqoiquslyfzgr.supabase.co';
-  window.SB_SUPABASE_KEY = ''; // ← cole sua anon key aqui
+  window.SB_SUPABASE_KEY = 'sb_publishable_vR1WOfVEbqXp-EZhCBSP4Q__G-hXsIx';
 
   /* ── Inicializar Supabase ── */
   var infra = SB.Infrastructure;
