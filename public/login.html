@@ -84,11 +84,16 @@
     if (mode === 'signup') {
       result = await client.auth.signUp({ email: email, password: password });
       if (result.error) { errorEl.textContent = result.error.message; errorEl.style.display = 'block'; return; }
-      // Login automático após cadastro
+      // Se ja retornou sessao, vai direto pro app
+      if (result.data.session) {
+        window.location.href = '/index.html';
+        return;
+      }
+      // Tenta login automatico
       var loginResult = await client.auth.signInWithPassword({ email: email, password: password });
       if (loginResult.error) {
         errorEl.style.color = 'var(--emerald)';
-        errorEl.textContent = 'Conta criada! Faça login.';
+        errorEl.textContent = 'Conta criada! Faça login abaixo.';
         errorEl.style.display = 'block';
         toggleMode();
       } else {
