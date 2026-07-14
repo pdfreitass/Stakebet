@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!login\\.html|css/|js/|assets/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
