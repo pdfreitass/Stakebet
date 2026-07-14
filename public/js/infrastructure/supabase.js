@@ -12,11 +12,20 @@ window.SB.Infrastructure = window.SB.Infrastructure || {};
   I.supabase = null;
 
   I.initSupabase = function(url, key) {
-    if (typeof supabase !== 'undefined') {
-      I.supabase = supabase.createClient(url || SUPABASE_URL, key || SUPABASE_KEY);
-      return I.supabase;
+    var finalUrl = url || SUPABASE_URL;
+    var finalKey = key || SUPABASE_KEY;
+    if (!finalUrl || !finalKey) {
+      console.log('StakeBet: offline mode (Supabase nao configurado)');
+      return null;
     }
-    console.warn('Supabase SDK não carregado. Usando localStorage como fallback.');
+    try {
+      if (typeof supabase !== 'undefined') {
+        I.supabase = supabase.createClient(finalUrl, finalKey);
+        return I.supabase;
+      }
+    } catch(e) {
+      console.warn('Supabase init error:', e.message);
+    }
     return null;
   };
 

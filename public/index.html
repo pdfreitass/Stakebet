@@ -738,16 +738,22 @@
 
 
 
-<!-- ══════════ SCRIPTS (ordem de dependência) ══════════ -->
+<!-- ══════════ SCRIPTS (Clean Architecture load order) ══════════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- L1: Domain (zero deps) -->
 <script src="/js/domain/util.js"></script>
 <script src="/js/domain/betting.js"></script>
 <script src="/js/domain/stats.js"></script>
+<!-- L2: Infrastructure -->
 <script src="/js/infrastructure/supabase.js"></script>
 <script src="/js/infrastructure/storage.js"></script>
 <script src="/js/infrastructure/sync.js"></script>
 <script src="/js/infrastructure/export.js"></script>
-<script src="/js/app/auth.js"></script>
+<!-- L4: UI (templates needed by App layer) -->
+<script src="/js/ui/html.js"></script>
+<script src="/js/ui/navigation.js"></script>
+<script src="/js/ui/home.js"></script>
+<!-- L3: App (use cases, depends on UI templates) -->
 <script src="/js/app/config.js"></script>
 <script src="/js/app/casas.js"></script>
 <script src="/js/app/simples.js"></script>
@@ -755,9 +761,8 @@
 <script src="/js/app/duplogreen.js"></script>
 <script src="/js/app/lixeira.js"></script>
 <script src="/js/app/reports.js"></script>
-<script src="/js/ui/html.js"></script>
-<script src="/js/ui/navigation.js"></script>
-<script src="/js/ui/home.js"></script>
+<script src="/js/app/auth.js"></script>
+<!-- Bootstrap -->
 <script src="/js/init.js"></script>
 
 </body>
