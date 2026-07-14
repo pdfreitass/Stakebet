@@ -10,6 +10,11 @@
   var infra = SB.Infrastructure;
   infra.initSupabase();
 
+  /* ── Inicializar objetos de camada ── */
+  SB.Infrastructure = SB.Infrastructure || {};
+  SB.App = SB.App || {};
+  SB.UI = SB.UI || {};
+
   /* ── Layer aliases (retrocompatibilidade) ── */
   SB.Domain = SB.Util;
   SB.Infrastructure.Storage = SB.Store;
